@@ -14,7 +14,7 @@ import jakarta.persistence.Table;
  */
 
 @Entity
-@Table( name = "country")
+@Table( name = "countries")
 public class Country {
     
     @Id

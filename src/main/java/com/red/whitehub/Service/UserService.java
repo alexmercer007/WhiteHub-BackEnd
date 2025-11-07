@@ -24,7 +24,7 @@ public class UserService extends Role {
         this.userRepository = userRepository;
     }
     
-    public User register(UserDTO userDto) throws EmailFoundException { 
+    public User register(UserDTO userDto) throws EmailFoundException {  
         
         Optional<User> userOptional = userRepository.findByEmail(userDto.getEmail());
         

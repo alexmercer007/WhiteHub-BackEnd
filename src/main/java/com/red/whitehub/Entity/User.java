@@ -2,7 +2,6 @@
 
 package com.red.whitehub.Entity;
 
-import com.red.whitehub.Dto.UserDTO;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -23,7 +22,9 @@ public class User {
  @Id 
  @GeneratedValue( strategy = GenerationType.AUTO )
  private Long id;
-    
+  
+ 
+ //-- Usuario
  @Column( name = "name")
  private String name;
  
@@ -42,23 +43,41 @@ public class User {
  @Column( name = "birthdate")
  private LocalDate birthdate;
  
- @Column( name = "phoneNumber")
+ @Column( name = "phone_number")
  private String phoneNumber;
  
  @ManyToOne
  @JoinColumn( name = "country_id") 
  private Country country;
  
- @Column( name = "createdAt")
+ 
+ //-- Estado de cuenta
+ @Column( name = "email_verified")
+ private boolean emailVerified = false;
+ 
+ @Column( name = "email_verified_at")
+ private LocalDateTime emailVerifiedAt;
+ 
+ @Column( name = "verification_token")
+ private String verificationToken;
+ 
+ 
+ //-- Auditoría
+ @Column( name = "created_ip")
+ private String createdIp;
+ 
+ @Column( name = "created_at")
  private LocalDateTime createdAt;
  
-@Column( name = "updatedAt")
+@Column( name = "updated_at")
 private LocalDateTime updatedAt;
 
+
+//-- Estado de usuario
 @Column( name = "banned", nullable = false)
 private boolean banned = false;
 
-@Column( name = "bannedAt")
+@Column( name = "banned_at")
 private LocalDateTime bannedAt;
 
 @Column( name = "temporary_ban", nullable = false)
@@ -70,13 +89,52 @@ private LocalDateTime temporaryBanAt;
 @Column( name = "deleted")
 private boolean deleted;
 
-@Column( name = "deletedAt")
+@Column( name = "deleted_at")
 private LocalDateTime deletedAt;
 
+
+//-- Seguridad
+@Column( name = "reset_token")
+private String resetToken;
+
+@Column( name = "reset_token_expires")
+private LocalDateTime resetTokenExpires;
+
+@Column( name = "last_login_at")
+private LocalDateTime lastLoginAt;
+
+@Column( name = "present_login_ip")
+private String presentLoginIp;
+
+@Column( name = "present_login_ip_time")
+private LocalDateTime presentLoginIpTime;
+
+@Column( name = "last_login_ip")
+private String lastLoginIp;
+
+@Column( name = "last_login_ip_time")
+private LocalDateTime lastLoginIpTime;
+
+@Column( name = "failed_attempts")
+private int failedAttempts = 0;
+
+@Column( name = "locked_until")
+private LocalDateTime locked_until; 
+
+
+//-- Roles y privilegios
 @Column( name = "role")
 private String role;
 
- 
+
+//-- Monetización
+@Column( name = "is_premium")
+private boolean isPremium;
+
+@Column( name = "premium_expires_at")
+private LocalDateTime premiumExpiresAt;
+
+
 //----------------------------------------------------------------------------- Getters ------------------------------------------------------------------------------------------// 
  
  
