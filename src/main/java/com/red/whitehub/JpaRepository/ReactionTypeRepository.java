@@ -4,6 +4,7 @@
  */
 package com.red.whitehub.JpaRepository;
 
+import com.red.whitehub.Entity.ReactionType;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
