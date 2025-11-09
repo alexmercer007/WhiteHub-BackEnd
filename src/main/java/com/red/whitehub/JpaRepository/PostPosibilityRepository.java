@@ -1,15 +1,14 @@
 
 package com.red.whitehub.JpaRepository;
 
-import com.red.whitehub.Entity.States;
+import com.red.whitehub.Entity.PostPosibility;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  *
  * @author alejandro
  */
-public interface StatesRepository extends JpaRepository <States, Integer > {
-    
-    
+
+public interface PostPosibilityRepository extends JpaRepository< PostPosibility, Long > {
     
 }

@@ -28,7 +28,7 @@ public class States {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long Id;
+    private int Id;
     
     // Relación con la entidad Country
     @ManyToOne
@@ -50,7 +50,7 @@ public class States {
     
     
     
-    public void setId( Long Id){     
+    public void setId( int Id){     
         this.Id = Id;      
     }
     
@@ -76,7 +76,7 @@ public class States {
     
     
     
-    public Long getId(){
+    public int getId(){
         return this.Id;
     }
     
