@@ -2,13 +2,9 @@
 
 package com.red.whitehub.Entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import com.red.whitehub.Security.Role;
+import jakarta.persistence.*;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import org.springframework.data.annotation.Id;
@@ -22,8 +18,8 @@ public class User {
  @Id 
  @GeneratedValue( strategy = GenerationType.AUTO )
  private Long id;
-  
- 
+
+
  //-- Usuario
  @Column( name = "name")
  private String name;
@@ -124,7 +120,8 @@ private LocalDateTime locked_until;
 
 //-- Roles y privilegios
 @Column( name = "role")
-private String role;
+@Enumerated(EnumType.STRING)
+private Role role;
 
 
 //-- Monetización
@@ -136,13 +133,14 @@ private LocalDateTime premiumExpiresAt;
 
 
 //----------------------------------------------------------------------------- Getters ------------------------------------------------------------------------------------------// 
- 
- 
-public Long getId(){
+
+
+    //-- Usuario
+  public Long getId(){
      return this.id;
  } 
  
- public String getName(){
+  public String getName(){
      return this.name;
  }
  
@@ -173,7 +171,10 @@ public Long getId(){
  public Country getCountry(){
      return this.country;
  }
- 
+
+
+
+    //-- Estado de cuenta
  public LocalDateTime getCreatedAt(){
      return this.createdAt; 
  }
@@ -206,7 +207,7 @@ public Long getId(){
      return this.deletedAt; 
  } 
  
- public String getRole(){
+ public Role getRole(){
      return this.role; 
  } 
  
@@ -231,12 +232,10 @@ public Long getId(){
  }
    
   public void setPassword( String password ){
-      BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-      String encoded = encoder.encode(password);     
-    this.password = encoded;
+    this.password = password;
  }
  
- public void setbirthdate( LocalDate birthdate ){
+ public void setBirthdate( LocalDate birthdate ){
       this.birthdate = birthdate;
  }
  
@@ -272,7 +271,7 @@ public Long getId(){
      this.deletedAt = deletedAt; 
  } 
  
- public void setRole( String role){
+ public void setRole( Role role){
      this.role = role; 
  } 
 
